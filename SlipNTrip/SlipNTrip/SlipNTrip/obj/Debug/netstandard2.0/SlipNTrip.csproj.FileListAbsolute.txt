@@ -1,0 +1,16 @@
+C:\Users\Lisa Roberts\source\repos\SlipNTrip\SlipNTrip\SlipNTrip\bin\Debug\netstandard2.0\SlipNTrip.deps.json
+C:\Users\Lisa Roberts\source\repos\SlipNTrip\SlipNTrip\SlipNTrip\bin\Debug\netstandard2.0\SlipNTrip.dll
+C:\Users\Lisa Roberts\source\repos\SlipNTrip\SlipNTrip\SlipNTrip\bin\Debug\netstandard2.0\ref\SlipNTrip.dll
+C:\Users\Lisa Roberts\source\repos\SlipNTrip\SlipNTrip\SlipNTrip\bin\Debug\netstandard2.0\SlipNTrip.pdb
+C:\Users\Lisa Roberts\source\repos\SlipNTrip\SlipNTrip\SlipNTrip\obj\Debug\netstandard2.0\SlipNTrip.csproj.AssemblyReference.cache
+C:\Users\Lisa Roberts\source\repos\SlipNTrip\SlipNTrip\SlipNTrip\obj\Debug\netstandard2.0\SlipNTrip.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Lisa Roberts\source\repos\SlipNTrip\SlipNTrip\SlipNTrip\obj\Debug\netstandard2.0\App.xaml.g.cs
+C:\Users\Lisa Roberts\source\repos\SlipNTrip\SlipNTrip\SlipNTrip\obj\Debug\netstandard2.0\MainPage.xaml.g.cs
+C:\Users\Lisa Roberts\source\repos\SlipNTrip\SlipNTrip\SlipNTrip\obj\Debug\netstandard2.0\SlipNTrip.AssemblyInfoInputs.cache
+C:\Users\Lisa Roberts\source\repos\SlipNTrip\SlipNTrip\SlipNTrip\obj\Debug\netstandard2.0\SlipNTrip.AssemblyInfo.cs
+C:\Users\Lisa Roberts\source\repos\SlipNTrip\SlipNTrip\SlipNTrip\obj\Debug\netstandard2.0\SlipNTrip.csproj.CoreCompileInputs.cache
+C:\Users\Lisa Roberts\source\repos\SlipNTrip\SlipNTrip\SlipNTrip\obj\Debug\netstandard2.0\XamlC.stamp
+C:\Users\Lisa Roberts\source\repos\SlipNTrip\SlipNTrip\SlipNTrip\obj\Debug\netstandard2.0\SlipNTrip.dll
+C:\Users\Lisa Roberts\source\repos\SlipNTrip\SlipNTrip\SlipNTrip\obj\Debug\netstandard2.0\ref\SlipNTrip.dll
+C:\Users\Lisa Roberts\source\repos\SlipNTrip\SlipNTrip\SlipNTrip\obj\Debug\netstandard2.0\SlipNTrip.pdb
+C:\Users\Lisa Roberts\source\repos\SlipNTrip\SlipNTrip\SlipNTrip\obj\Debug\netstandard2.0\ExistingPatient.xaml.g.cs

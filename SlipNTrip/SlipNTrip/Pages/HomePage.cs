@@ -19,14 +19,14 @@ namespace SlipNTrip
 
         public HomePage()
         {
-            ToolbarItem item = new ToolbarItem
+            ToolbarItem helpToolbarItem = new ToolbarItem
             {
                 Text = "?",
                 Order = ToolbarItemOrder.Primary,
                 Priority = 0
             };
-            item.Clicked += helpButtonClicked;
-            this.ToolbarItems.Add(item);
+            helpToolbarItem.Clicked += helpButtonClicked;
+            this.ToolbarItems.Add(helpToolbarItem);
 
             StackLayout stackLayout = new StackLayout();
             

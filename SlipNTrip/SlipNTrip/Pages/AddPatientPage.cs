@@ -33,6 +33,15 @@ namespace SlipNTrip
         {
             this.Title = "Add Patient";
 
+            ToolbarItem helpToolbarItem = new ToolbarItem
+            {
+                Text = "?",
+                Order = ToolbarItemOrder.Primary,
+                Priority = 0
+            };
+            helpToolbarItem.Clicked += helpButtonClicked;
+            this.ToolbarItems.Add(helpToolbarItem);
+
             StackLayout stackLayout = new StackLayout();
 
             nameLabel = new Label();
@@ -117,11 +126,19 @@ namespace SlipNTrip
 
                 db.Insert(patient);
 
-                await Navigation.PushAsync(new TestPage());
+                await Navigation.PushAsync(new TestPage(patient));
             }
             else
                 await DisplayAlert("Add Patient Error", "One or more fields missing information", "Done");
         }
 
+        void helpButtonClicked(object sender, EventArgs e)
+        {
+            string helpMessage = "Input the patients name, age, gender, weight, height and shoe size\n" +
+                "Gender: Female, Male, Other??\n" +
+                "Weight: Measured in lb\n" +
+                "Height: Measured in ft";
+            DisplayAlert("Help - Add Patient Page", helpMessage, "Done");
+        }
     } 
 }

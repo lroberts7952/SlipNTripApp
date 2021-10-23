@@ -11,8 +11,9 @@ namespace SlipNTrip
 {
     public class PatientInfoPage : ContentPage
     {
-        string dbPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "patients.db3");
-        
+        string dbPatientPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "patients.db3");
+        string dbTestResultsPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "testResults.db3");
+
         private Patient patient; 
         private Label nameLabel;
         private Label genderLabel;
@@ -34,8 +35,17 @@ namespace SlipNTrip
 
         public PatientInfoPage(Patient patient)
         {
-            this.Title = patient.Name;
             this.patient = patient;
+            this.Title = patient.Name;
+
+            ToolbarItem helpToolbarItem = new ToolbarItem
+            {
+                Text = "?",
+                Order = ToolbarItemOrder.Primary,
+                Priority = 0
+            };
+            helpToolbarItem.Clicked += helpButtonClicked;
+            this.ToolbarItems.Add(helpToolbarItem);
 
             StackLayout stackLayout = new StackLayout();
 
@@ -118,15 +128,17 @@ namespace SlipNTrip
         async void UpdateButtonClicked(object sender, EventArgs e)
         {
             this.Title = nameEntry.Text;
-            var db = new SQLiteConnection(dbPath);
+            var db = new SQLiteConnection(dbPatientPath);
           
-            if (!string.IsNullOrWhiteSpace(nameEntry.Text) && !string.IsNullOrWhiteSpace(ageEntry.Text) && !string.IsNullOrWhiteSpace(heightEntry.Text)
+            if (!string.IsNullOrWhiteSpace(nameEntry.Text) && !string.IsNullOrWhiteSpace(ageEntry.Text) && 
+                !string.IsNullOrWhiteSpace(heightEntry.Text) && !string.IsNullOrWhiteSpace(genderEntry.Text)
                 && !string.IsNullOrWhiteSpace(weightEntry.Text) && !string.IsNullOrWhiteSpace(shoeSizeEntry.Text))
             {
                 Patient patient = new Patient()
                 {
                     ID = this.patient.ID,
                     Name = nameEntry.Text,
+                    Gender = genderEntry.Text,
                     Age = int.Parse(ageEntry.Text),
                     Height = double.Parse(heightEntry.Text),
                     Weight = double.Parse(weightEntry.Text),
@@ -137,23 +149,34 @@ namespace SlipNTrip
             }
 
             else
-                await DisplayAlert("Add Patient", "One or more fields missing information", "Done");
+                await DisplayAlert("Patient Info", "One or more fields missing information", "Done");
         }
 
         async void DeleteButtonClicked(object sender, EventArgs e)
         {
-            var db = new SQLiteConnection(dbPath);
-            bool response = await DisplayAlert("Delete", "Are you sure you would like to delete the patient?", "Yes", "No");
+            var dbPatient = new SQLiteConnection(dbPatientPath);
+            var dbTestResults = new SQLiteConnection(dbTestResultsPath);
+            bool response = await DisplayAlert("Delete: Patient", "Are you sure you would like to delete the patient?", "Yes", "No");
             if (response)
             {
-                db.Table<Patient>().Delete(x => x.ID == this.patient.ID);
+                dbPatient.Table<Patient>().Delete(x => x.ID == this.patient.ID);
+                dbTestResults.Table<TestResults>().Delete(x => x.PatientID == this.patient.ID);
                 await Navigation.PopAsync();
             }
         }
 
         async void TestButtonClicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new TestPage());
+            await Navigation.PushAsync(new TestPage(patient));
+        }
+
+        void helpButtonClicked(object sender, EventArgs e)
+        {
+            string helpMessage = "Purpose: To view the patients information\n" +
+                "Update: Saves the information changed with patients information\n" +
+                "Test: Navigates to page to view the list of test results\n" +
+                "Delete: Removes patient information and test results from database";
+            DisplayAlert("Help - Patient Infomation Page", helpMessage, "Done");
         }
     }
 }

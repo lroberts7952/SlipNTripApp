@@ -24,7 +24,20 @@ namespace SlipNTrip
             this.patient = patient;
             this.Title = "Test";
 
+            ToolbarItem helpToolbarItem = new ToolbarItem
+            {
+                Text = "?",
+                Order = ToolbarItemOrder.Primary,
+                Priority = 0
+            };
+            helpToolbarItem.Clicked += helpButtonClicked;
+            this.ToolbarItems.Add(helpToolbarItem);
+
             StackLayout stackLayout = new StackLayout();
+
+            SearchBar searchBar = new SearchBar { Placeholder = "Search items..." };
+            //searchBar.TextChanged += OnTextChanged;
+            stackLayout.Children.Add(searchBar);
 
             newTest = new Button();
             newTest.Text = "New Test";
@@ -51,6 +64,14 @@ namespace SlipNTrip
         {
             testResults = (TestResults)e.SelectedItem;
             Navigation.PushAsync(new Pages.TestResultPage(patient, testResults, true));
+        }
+
+        void helpButtonClicked(object sender, EventArgs e)
+        {
+            string helpMessage = "Purpose: To access patients test results by selecting a test name\n" +
+                "New Test: Navigates to device controls page to input required information needed for device movements" +
+                "and generate the pertubation"; //Check spelling
+            DisplayAlert("Help - View Test Results", helpMessage, "Done");
         }
     }
 }

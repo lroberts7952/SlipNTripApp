@@ -14,6 +14,7 @@ namespace SlipNTrip.Pages
 
         private Patient patient;
         private TestResults testResults;
+        private Boolean buttonLayout;
 
         private Label patientName;
         private Label testName;
@@ -40,10 +41,20 @@ namespace SlipNTrip.Pages
         {
             this.patient = patient;
             this.testResults = testResults;
+            this.buttonLayout = buttonLayout;
             this.Title = patient.Name + ": " + testResults.TestName;
 
-            StackLayout stackLayout = new StackLayout();
+            ToolbarItem helpToolbarItem = new ToolbarItem
+            {
+                Text = "?",
+                Order = ToolbarItemOrder.Primary,
+                Priority = 0
+            };
+            helpToolbarItem.Clicked += helpButtonClicked;
+            this.ToolbarItems.Add(helpToolbarItem);
 
+            StackLayout stackLayout = new StackLayout();
+            
             patientName = new Label();
             patientName.Text = "Patient: " + patient.Name;
             patientName.FontSize = 24;
@@ -212,6 +223,28 @@ namespace SlipNTrip.Pages
             if (response)
             {
                 await Navigation.PushAsync(new HomePage());
+            }
+        }
+
+        void helpButtonClicked(object sender, EventArgs e)
+        {
+            string helpMessage1 = "Purpose: To view the test results\n" +
+                "The test results include patient information, device control information and data collected from the stepping surface\n" +
+                "Save: Saves test results into database\n" +
+                "New Test: Navigates to the test page\n" +
+                "Export: Exports data into desired file format (text file, excel file, PDF)\n" +
+                "Home Page: Navigates to home page";
+            string helpMessage2 = "Purpose: To view the test results\n" +
+                "The test results include patient information, device control information and data collected from the stepping surface\n" +
+                "Export: Exports data into desired file format (text file, excel file, PDF)\n" +
+                "Delete: Removes test results from database";
+            if(buttonLayout)
+            {
+                DisplayAlert("Help - Test Results Page", helpMessage2, "Done");
+            }
+            else
+            {
+                DisplayAlert("Help - Test Results Page", helpMessage1, "Done");
             }
         }
     }

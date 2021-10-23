@@ -23,6 +23,15 @@ namespace SlipNTrip
             this.Title = "Patients";
             var db = new SQLiteConnection(dbPath);
 
+            ToolbarItem helpToolbarItem = new ToolbarItem
+            {
+                Text = "?",
+                Order = ToolbarItemOrder.Primary,
+                Priority = 0
+            };
+            helpToolbarItem.Clicked += helpButtonClicked;
+            this.ToolbarItems.Add(helpToolbarItem);
+
             StackLayout stackLayout = new StackLayout();
 
             SearchBar searchBar = new SearchBar { Placeholder = "Search items..." };
@@ -52,6 +61,12 @@ namespace SlipNTrip
         {
             //SearchBar searchBar = (SearchBar)sender;
             //listView.ItemsSource = PatientList.FindByName(searchBar.Text);
+        }
+
+        void helpButtonClicked(object sender, EventArgs e)
+        {
+            string helpMessage = "Purpose: To access patients information by selecting a patients name\n";
+            DisplayAlert("Help - View Patients", helpMessage, "Done");
         }
     }
 }
